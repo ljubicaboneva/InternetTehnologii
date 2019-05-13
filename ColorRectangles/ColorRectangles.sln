@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorRectangles", "ColorRectangles\ColorRectangles.csproj", "{BC1371CA-140E-4E16-A4A4-AD81BDC79DBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC1371CA-140E-4E16-A4A4-AD81BDC79DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1371CA-140E-4E16-A4A4-AD81BDC79DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1371CA-140E-4E16-A4A4-AD81BDC79DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1371CA-140E-4E16-A4A4-AD81BDC79DBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15863AB2-A041-4BD2-9CA0-F9643708E654}
+	EndGlobalSection
+EndGlobal
