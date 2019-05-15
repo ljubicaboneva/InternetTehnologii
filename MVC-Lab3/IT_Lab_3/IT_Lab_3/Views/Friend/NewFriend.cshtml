@@ -1,0 +1,33 @@
+﻿@model IT_Lab_3.Models.Friend
+@{
+    ViewBag.Title = "NewFriend";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Update friend</h2>
+
+@using (Html.BeginForm("AddFriend", "Friend"))
+{
+<div class="form-group">
+
+    <label>Friend ID</label>
+    @Html.TextBoxFor(m => m.ID_, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.ID_)
+
+</div>
+<div class="form-group">
+    <label>Friend Name</label>
+    @Html.TextBoxFor(m => m.Ime, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Ime)
+</div>
+<div class="form-group">
+    <label>Place</label>
+    @Html.TextBoxFor(m => m.MestoZiveenje, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.MestoZiveenje)
+</div>
+    <button  name="save" type="submit" class="btn btn-primary">Submit</button>
+    <button name="cancel" class="btn btn-primary">Back</button>
+}
+
+
+
+

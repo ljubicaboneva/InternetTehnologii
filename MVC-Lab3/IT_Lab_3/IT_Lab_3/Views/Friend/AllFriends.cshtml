@@ -1,0 +1,38 @@
+﻿@model List<IT_Lab_3.Models.Friend>
+@{
+    ViewBag.Title = "AllFriends";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<table>
+    <thead>
+        <tr>
+            <th style="border: solid" height="5px" width="80px;">Friend ID.</th>
+            <th style="border: solid" height="5px" width="100px;">Friend Name</th>
+            <th style="border: solid" height="5px" width="50px;">Place</th>
+            <th style="border: solid" height="5px" width="50px;"></th>
+        </tr>
+    </thead>
+
+    @{
+            int c = 0;
+            foreach (var i in Model)
+            {
+    <tr>
+        <th style="border: solid" height="50px" width="80px;">@i.ID_</th>
+        <th style="border: solid" height="50px" width="100px;">@i.Ime</th>
+        <th style="border: solid" height="50px" width="100px;">@i.MestoZiveenje</th>
+        <th style="border: solid" height="50px" width="50px;">
+            @Html.ActionLink("Edit", "UpdateFriend", new { id = c })
+            @Html.ActionLink("Delete", "DeleteFriend", new { id = c })
+        </th>
+    </tr>
+            c++;
+        }
+     }
+
+
+                
+        </table>
+
