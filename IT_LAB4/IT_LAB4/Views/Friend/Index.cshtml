@@ -1,0 +1,73 @@
+﻿@model IEnumerable<IT_LAB4.Models.Friend>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Friends:</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="table1">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID_)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MestoZiveenje)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MestoZiveenje)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    <button data-friend-id="@item.id" class="btn-link js-delete">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            var table = $("#table1").DataTable();
+
+            $("#table1 .js-delete").on("click", function () {
+                var button = $(this);
+                bootbox.confirm("Delete?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/Friend/Delete/" + button.attr("data-friend-id"),
+                            method: "GET",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+       });
+
+    </script>
+}
