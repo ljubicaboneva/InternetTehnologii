@@ -1,0 +1,87 @@
+﻿@model IEnumerable<IT_LAb_5.Models.Friend>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="tabela">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID_)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MestoZiveenje)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MestoZiveenje)
+                </td>
+                <td>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        @Html.ActionLink(" Edit ", "Edit", new { id = item.id })
+                        @Html.ActionLink(" Details", "Details", new { id = item.id })
+                        <button class="btn-link js-delete" data-friend-id="@item.id">Delete</button>
+                    }
+
+                    else if (User.IsInRole("Manager"))
+                    { 
+                        @Html.ActionLink(" Edit ", "Edit", new { id = item.id }) 
+                        @Html.ActionLink(" Details", "Details", new { id = item.id })
+                        <a href="/Account/Login?ReturnUrl=%2FFriends">Delete</a>
+                    }
+
+                    else
+                    {
+                        @Html.ActionLink("Details", "Details", new { id = item.id })
+                    }
+                </td>
+                </tr>
+                    }
+</tbody>
+
+</table>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var table = $("#tabela").DataTable();
+            $("#tabela .js-delete").on("click", function () {
+                var button = $(this);
+                bootbox.confirm("Delete?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/Friends/Delete/" + button.attr("data-friend-id"),
+                            method: "GET",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+     });
+    </script>
+    }
